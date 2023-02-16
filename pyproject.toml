@@ -2,9 +2,16 @@
 name = "tetris"
 version = "0.1.0"
 description = "Tetris for one player with basic functionality movements, rotations, high score, leaderboard, tetris generations"
-authors = ["Matej Novota <matej.novota@gmail.com>","Dominik Šidlo <sidlo.domco@gmail.com>","Martin Letenay <martinjr.letenay@gmail.com>","Pavol Repisky <pal.repisky@gmail.com>","Dmytro Herashchenko <deemahh2@gmail.com>"]
+authors = [
+    "Matej Novota <matej.novota@gmail.com>",
+    "Dominik Šidlo <sidlo.domco@gmail.com>",
+    "Martin Letenay <martinjr.letenay@gmail.com>",
+    "Pavol Repisky <pal.repisky@gmail.com>",
+    "Dmytro Herashchenko <deemahh2@gmail.com>"
+]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/krtko1/tetris"
 
 [tool.poetry.dependencies]
 python = "^3.11"
