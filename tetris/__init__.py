@@ -7,7 +7,7 @@ from tetris.piece import Piece
 
 
 def create_grid(locked_positions={}):
-    grid = [[(0, 0, 0) for x in range(10)] for x in range(20)]
+    grid = [[(0, 0, 0) for x in range(constants.cols)] for x in range(constants.rows)]
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
@@ -35,7 +35,8 @@ def convert_shape_format(shape):
 
 def valid_space(shape, grid):
     accepted_positions = [
-        [(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)
+        [(j, i) for j in range(constants.cols) if grid[i][j] == (0, 0, 0)]
+        for i in range(constants.rows)
     ]
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = convert_shape_format(shape)

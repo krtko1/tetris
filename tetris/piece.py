@@ -2,9 +2,6 @@ from tetris import constants
 
 
 class Piece(object):
-    rows = 20  # y
-    columns = 10  # x
-
     def __init__(self, column, row, shape):
         self.x = column
         self.y = row
