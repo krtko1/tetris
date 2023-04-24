@@ -1,7 +1,9 @@
-import pygame
 import random
-from piece import Piece
-import constants
+
+import pygame
+
+from tetris import constants
+from tetris.piece import Piece
 
 
 def create_grid(locked_positions={}):
@@ -22,7 +24,7 @@ def convert_shape_format(shape):
     for i, line in enumerate(format):
         row = list(line)
         for j, column in enumerate(row):
-            if column == '0':
+            if column == "0":
                 positions.append((shape.x + j, shape.y + i))
 
     for i, pos in enumerate(positions):
@@ -32,7 +34,9 @@ def convert_shape_format(shape):
 
 
 def valid_space(shape, grid):
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)]
+    accepted_positions = [
+        [(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)
+    ]
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = convert_shape_format(shape)
 
@@ -60,29 +64,56 @@ def draw_grid(surface, row, col):
     sx = constants.top_left_x
     sy = constants.top_left_y
     for i in range(row):
-        pygame.draw.line(surface, (128, 128, 128), (sx, sy + i * 30),
-                         (sx + constants.play_width, sy + i * 30))  # horizontal lines
+        pygame.draw.line(
+            surface,
+            (128, 128, 128),
+            (sx, sy + i * 30),
+            (sx + constants.play_width, sy + i * 30),
+        )  # horizontal lines
         for j in range(col):
-            pygame.draw.line(surface, (128, 128, 128), (sx + j * 30, sy),
-                             (sx + j * 30, sy + constants.play_height))  # vertical lines
+            pygame.draw.line(
+                surface,
+                (128, 128, 128),
+                (sx + j * 30, sy),
+                (sx + j * 30, sy + constants.play_height),
+            )  # vertical lines
 
 
 def draw_window(surface, grid):
     surface.fill((0, 0, 0))
-    font = pygame.font.SysFont('comicsans', 60)
-    label = font.render('TETRIS', 1, (255, 255, 255))
+    font = pygame.font.SysFont("comicsans", 60)
+    label = font.render("TETRIS", 1, (255, 255, 255))
 
-    surface.blit(label, (constants.top_left_x + constants.play_width / 2 - (label.get_width() / 2), 30))
+    surface.blit(
+        label,
+        (constants.top_left_x + constants.play_width / 2 - (label.get_width() / 2), 30),
+    )
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j],
-                             (constants.top_left_x + j * constants.block_size,
-                              constants.top_left_y + i * constants.block_size, constants.block_size,
-                              constants.block_size), 0)
+            pygame.draw.rect(
+                surface,
+                grid[i][j],
+                (
+                    constants.top_left_x + j * constants.block_size,
+                    constants.top_left_y + i * constants.block_size,
+                    constants.block_size,
+                    constants.block_size,
+                ),
+                0,
+            )
 
-    pygame.draw.rect(surface, (255, 0, 0),
-                     (constants.top_left_x, constants.top_left_y, constants.play_width, constants.play_height), 5)
+    pygame.draw.rect(
+        surface,
+        (255, 0, 0),
+        (
+            constants.top_left_x,
+            constants.top_left_y,
+            constants.play_width,
+            constants.play_height,
+        ),
+        5,
+    )
 
     draw_grid(surface, len(grid), len(grid[0]))
     pygame.display.update()
@@ -101,7 +132,6 @@ def main(win):
     fall_time = 0
 
     while run:
-
         grid = create_grid(locked_positions)
         fall_time += clock.get_rawtime()
         clock.tick()
@@ -130,9 +160,13 @@ def main(win):
                     if not valid_space(current_piece, grid):
                         current_piece.x -= 1
                 elif event.key == pygame.K_UP:
-                    current_piece.rotation = current_piece.rotation + 1 % len(current_piece.shape)
+                    current_piece.rotation = current_piece.rotation + 1 % len(
+                        current_piece.shape
+                    )
                     if not valid_space(current_piece, grid):
-                        current_piece.rotation = current_piece.rotation - 1 % len(current_piece.shape)
+                        current_piece.rotation = current_piece.rotation - 1 % len(
+                            current_piece.shape
+                        )
 
                 if event.key == pygame.K_DOWN:
                     current_piece.y += 1
@@ -161,5 +195,5 @@ def main(win):
 
 pygame.font.init()
 win = pygame.display.set_mode((constants.s_width, constants.s_height))
-pygame.display.set_caption('Tetris')
+pygame.display.set_caption("Tetris")
 main(win)  # start game

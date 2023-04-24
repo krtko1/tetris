@@ -1,4 +1,4 @@
-import constants
+from tetris import constants
 
 
 class Piece(object):
