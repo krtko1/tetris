@@ -17,7 +17,6 @@ def create_grid(locked_positions={}):
     return grid
 
 
-
 def convert_shape_format(piece):
     positions = []
     format = piece.shape[piece.rotation % len(piece.shape)]
