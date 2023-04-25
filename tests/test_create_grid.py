@@ -16,8 +16,15 @@ class TestCreateGrid(unittest.TestCase):
 
     def test_grid_with_locked_positions(self):
         default_value = (0, 0, 0)
-        locked_positions = {(0, 0): (0, 128, 64), (0, 1): (0, 18, 87), (2, 3): (25, 0, 81), (4, 5): (18, 47, 11),
-                            (8, 7): (18, 120, 200), (-8, -7): (63, 120, 200), (9999, 9999): (111, 111, 111)}
+        locked_positions = {
+            (0, 0): (0, 128, 64),
+            (0, 1): (0, 18, 87),
+            (2, 3): (25, 0, 81),
+            (4, 5): (18, 47, 11),
+            (8, 7): (18, 120, 200),
+            (-8, -7): (63, 120, 200),
+            (9999, 9999): (111, 111, 111),
+        }
         grid = create_grid(locked_positions)
 
         for i in range(len(grid)):
@@ -26,6 +33,7 @@ class TestCreateGrid(unittest.TestCase):
                     self.assertEqual(grid[i][j], locked_positions[(j, i)])
                 else:
                     self.assertEqual(grid[i][j], default_value)
+
 
 if __name__ == "__main__":
     unittest.main()
