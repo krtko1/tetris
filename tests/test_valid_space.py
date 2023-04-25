@@ -1,6 +1,6 @@
 import unittest
 
-from tetris import constants, valid_space, create_grid, convert_shape_format
+from tetris import constants, convert_shape_format, create_grid, valid_space
 from tetris.piece import Piece
 
 
