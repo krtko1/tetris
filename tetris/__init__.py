@@ -17,19 +17,19 @@ def create_grid(locked_positions={}):
     return grid
 
 
-def convert_shape_format(shape):
+
+def convert_shape_format(piece):
     positions = []
-    format = shape.shape[shape.rotation % len(shape.shape)]
+    format = piece.shape[piece.rotation % len(piece.shape)]
 
     for i, line in enumerate(format):
         row = list(line)
         for j, column in enumerate(row):
             if column == "0":
-                positions.append((shape.x + j, shape.y + i))
+                positions.append((piece.x + j, piece.y + i))
 
     for i, pos in enumerate(positions):
         positions[i] = (pos[0] - 2, pos[1] - 4)
-
     return positions
 
 
@@ -57,7 +57,7 @@ def check_lost(positions):
     return False
 
 
-def get_shape():
+def get_piece():
     return Piece(5, 0, random.choice(constants.shapes))
 
 
@@ -127,8 +127,8 @@ def main(win):
     grid = create_grid(locked_positions)
     change_piece = False
     run = True
-    current_piece = get_shape()
-    next_piece = get_shape()
+    current_piece = get_piece()
+    next_piece = get_piece()
     clock = pygame.time.Clock()
     fall_time = 0
 
@@ -185,7 +185,7 @@ def main(win):
                 p = (pos[0], pos[1])
                 locked_positions[p] = current_piece.color
             current_piece = next_piece
-            next_piece = get_shape()
+            next_piece = get_piece()
             change_piece = False
 
         draw_window(win, grid)
@@ -194,7 +194,8 @@ def main(win):
             run = False
 
 
-pygame.font.init()
-win = pygame.display.set_mode((constants.s_width, constants.s_height))
-pygame.display.set_caption("Tetris")
-main(win)  # start game
+if __name__ == "__main__":
+    pygame.font.init()
+    win = pygame.display.set_mode((constants.s_width, constants.s_height))
+    pygame.display.set_caption("Tetris")
+    main(win)  # start game
