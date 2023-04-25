@@ -1,6 +1,7 @@
 import unittest
-from tetris.piece import Piece
+
 from tetris import constants, convert_shape_format
+from tetris.piece import Piece
 
 
 class TestConvertShapeFormat(unittest.TestCase):
@@ -47,5 +48,5 @@ class TestConvertShapeFormat(unittest.TestCase):
         self.assertEqual(result, expected)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
