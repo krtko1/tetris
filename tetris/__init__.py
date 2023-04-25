@@ -194,7 +194,8 @@ def main(win):
             run = False
 
 
-pygame.font.init()
-win = pygame.display.set_mode((constants.s_width, constants.s_height))
-pygame.display.set_caption("Tetris")
-main(win)  # start game
+if __name__ == "__main__":
+    pygame.font.init()
+    win = pygame.display.set_mode((constants.s_width, constants.s_height))
+    pygame.display.set_caption("Tetris")
+    main(win)  # start game
