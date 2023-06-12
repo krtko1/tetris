@@ -18,7 +18,7 @@ python = "^3.11"
 pygame = "^2.3.0"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.2.1"
+pytest = "^7.3.2"
 mypy = "^1.0.1"
 black = "^23.1.0"
 isort = "^5.12.0"
