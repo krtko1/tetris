@@ -15,7 +15,7 @@ repository = "https://github.com/krtko1/tetris"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pygame = "^2.3.0"
+pygame = "^2.5.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.1"
